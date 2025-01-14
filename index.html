@@ -519,7 +519,25 @@
                 font-size: 20px;
                 color: #555;
             }
-            
+           @media (max-width: 768px) {
+            .about-me-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .col-md-4, .col-md-8 {
+                width: 100%;
+            }
+
+            .bio-text-container {
+                gap: 30px;
+            }
+
+            .skills-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+                
     
         </style>
     </head>
@@ -537,7 +555,7 @@
             <div class="carousel slide" id="carouselMenu" data-bs-ride="false">
                 <div class="carousel-inner">
                     <!-- About Me Section -->
-                    <div class="carousel-item active">
+                    <div class="carousel-item active ">
                         <h2 class="section-title">About Me</h2>
                         <div class="row about-me-content">
                             <div class="col-md-4">
