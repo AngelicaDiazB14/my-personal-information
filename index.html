@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Angélica Díaz - Personal Profile</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        
+        <style>
+            body {
+                background-color: #e8f5e9;  
+                color: #004d40;  
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+            body::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, #ff4081, #00e5ff, #4caf50, #ffeb3b);
+                background-size: 400% 400%;
+                animation: gradientAnimation 10s ease infinite;
+                z-index: -1;  
+            }
+            @keyframes gradientAnimation {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            .container {
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+                max-width: 1300px;
+                width: 95%;
+                display: flex;
+                flex-direction: row;
+                height: 679px;
+                position: relative; 
+            }
+            
+            .container:hover {
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+                background-color: #f9f9f9; 
+            }
+            .container::before {
+                animation: rotate-light 6s linear infinite;
+            }
+            
+            @keyframes rotate-light {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+            .carousel {
+                flex-grow: 1;
+                padding: 20px;
+                max-width: 900px;
+                margin: auto;
+            }
+            .carousel-control-prev, .carousel-control-next {
+                width: 60px;
+                height: 60px;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: -70px;
+                margin-right: -70px;
+                position: absolute;
+                z-index: 10; 
+            }
+        
+            .carousel-control-prev-icon, .carousel-control-next-icon {
+                background-color: #004d40;
+                border-radius: 50%;
+                padding: 15px;
+            }
+        
+            
+            .sidebar {
+                background: linear-gradient(135deg, #004d40, #00796b); 
+                color: white;
+                padding: 20px;
+                width: 250px;
+                flex-shrink: 0;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .sidebar h3 {
+                font-size: 26px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 20px;
+                color: #a7ffeb;
+                border-bottom: 2px solid #a7ffeb;
+                padding-bottom: 10px;
+            }
+            
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                padding: 10px 15px;
+                width: 100%;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            
+            .sidebar a i {
+                margin-right: 10px;
+                font-size: 20px;
+                color: #80deea;
+            }
+            
+            .sidebar a:hover {
+                background: rgba(135, 4, 4, 0.2);
+                transform: scale(1.05); 
+                color: #80deea;
+            }
+            
+            .sidebar a:hover i {
+                color: rgb(103, 226, 21); 
+            }
+            
+            
+            .profile-img {
+                max-width: 100%;
+                border-radius: 50%;
+                border: 4px solid #b2c5eb;
+            }
+            
+            .section-title {
+                color: #004d40;
+                border-bottom: 2px solid #004d40;
+                margin-bottom: 20px;
+                
+            }
+            .card {
+                position: relative;
+                min-height: 350px;
+                max-width: 300px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            
+            .card-body {
+                text-align: center;
+            }
+            .card-title {
+                font-size: 18px; 
+                font-weight: bold;
+                margin-bottom: 10px; 
+                color: #333; 
+                align-self: flex-center; 
+            }
+            .collapse-content {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                border: 1px solid #ccc;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                z-index: 10;
+                padding: 10px;
+                display: none;
+                transition: all 0.3s ease-in-out;
+            }
+            
+            .card img {
+                height: 300px;
+                object-fit: cover;
+            }
+            .custom-card {
+                height: 380px;
+            }
+            .custom-card-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .toggle-description:checked ~ .collapse-content {
+                display: block;
+            }
+        
+            .toggle-description:checked ~ .custom-card-button {
+                display: none;
+            }
+            .progress-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: flex-start;
+            }
+            .progress-item {
+                width: 150px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        
+            .progress-bar-title {
+                font-size: 14px;
+                font-weight: bold;
+                color: #178b12;
+                margin-bottom: 5px;
+            }
+        
+            .progress-bar {
+                width: 100%;
+                background-color: #f5f5f5;
+                border-radius: 25px;
+                height: 10px;
+                margin-bottom: 5px;
+            }
+        
+            .progress {
+                height: 100%;
+                border-radius: 25px;
+                background-color: #478ebd;
+                transition: width 0.3s ease;
+            }
+        
+            .percentage {
+                font-size: 12px;
+                font-weight: bold;
+                color: black;
+                margin-top: 5px;
+            }
+        
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #004085;
+            }
+        
+            .section-divider {
+                border: none;
+                height: 5px;
+                background-color: #ccc;
+                margin: 20px 0;
+            }
+        
+            ul {
+                list-style: none;
+                padding-left: 0;
+            }
+        
+            li {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        
+            li strong {
+                color: #3975d0;
+            }
+        
+            li span {
+                font-size: 14px;
+                color: #777;
+            }
+        
+            .education h4 {
+                color: #0d6f49;
+            }
+        
+            .certificates h4 {
+                color: #0d6f49;
+            }
+            .programming-languages h4 {
+                color: #fd7e14;
+            }
+        
+            .other-skills h4 {
+                color: #17a2b8;
+            }
+        
+            i {
+                margin-right: 8px;
+            }
+            .about-me-content {
+                margin-top: 50px;
+            }
+        
+        
+            .bio-text-container {
+                background: linear-gradient(135deg, #e3f2fd, #ffffff);
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                gap: 60px;
+                margin-top: 20px;
+            }
+        
+            .bio-text {
+                font-size: 18px;
+                color: #333;
+                line-height: 1.8;
+                text-align: justify;
+                font-style: italic;
+                margin-bottom: 0;
+            }
+        
+            .info-list {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+        
+            .info-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 16px;
+                color: #333;
+            }
+        
+            .info-item i {
+                font-size: 20px;
+                color: #af684c;
+            }
+        
+            .skills {
+                margin-top: 30px;
+            }
+        
+            .skills-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 20px;
+                padding-left: 0;
+            }
+        
+            .skill-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+                background-color: #8bc2f7;
+                background: linear-gradient(135deg, #e3f2fd, #ffffff);
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: background-color 0.3s ease;
+            }
+        
+            .skill-item:hover {
+                background-color: #4caf50;
+                color: black;
+            }
+        
+            .skill-item i {
+                font-size: 24px;
+            }
+        
+            h2.section-title {
+                font-size: 30px;
+                color: #004d40;
+                font-weight: 600;
+            }
+        
+            .skills-list .skill-item {
+                font-size: 16px;
+            }
+            .social-links a {
+                font-size: 24px;
+                margin-right: 15px;
+                color: #007bff;
+                text-decoration: none;
+                transition: transform 0.3s ease-in-out;
+            }
+        
+            .social-links a:hover {
+                transform: scale(1.2);
+            }
+            .contact-info {
+                background-color: #d3ee8f;  
+                padding: 25px;
+                border-radius: 15px;
+                box-shadow: 0 4px 10px rgba(237, 229, 229, 0.2);  
+                margin-top: 30px;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid #4c57af;  
+                border-top: 5px solid #034906; 
+            }
+        
+            .contact-item {
+                display: flex;
+                align-items: center;
+                font-size: 18px;
+                color: #ab0e0e;
+                margin-bottom: 20px;
+                transition: background-color 0.3s ease;
+                padding: 12px;
+                border-radius: 8px;
+            }
+        
+            .contact-item:hover {
+                background-color: #31eac5;  
+            }
+        
+            .contact-item i {
+                font-size: 24px;
+                color: #0728fb;  
+                margin-right: 15px;
+            }
+        
+            .contact-item a {
+                text-decoration: none;
+                color: #333;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+        
+            .contact-item a:hover {
+                color: #1e40c7;  
+            }
+        
+            h2.section-title {
+                font-size: 32px;
+                color: #2f2f2f;
+                font-weight: 700;
+                margin-bottom: 30px;
+            }
+        
+            h2 i {
+                margin-right: 10px;
+                font-size: 28px;
+                color: #4caf50;
+            }
+        
+            
+            .date {
+                font-style: italic;
+                color: gray;
+            }
+            .row {
+                perspective: 1000px;
+            }
+            
+            .interest-item:hover {
+                transform: rotateY(15deg); 
+            }
+            
+            .interest-item {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                transform-style: preserve-3d;
+            }
+            .interest-item .circle {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: #fff;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                margin-bottom: 15px;
+                animation: bounce 1.5s ease-in-out infinite;
+            }
+            @keyframes bounce {
+                0% {
+                    transform: translateY(0);
+                }
+                30% {
+                    transform: translateY(-10px);
+                }
+                50% {
+                    transform: translateY(0);
+                }
+                70% {
+                    transform: translateY(-5px);
+                }
+                100% {
+                    transform: translateY(0);
+                }
+            }
+            .interest-item h5 {
+                font-size: 22px;
+                font-weight: bold;
+                color: #0946ae;
+            }
+        
+            .interest-item p {
+                font-size: 20px;
+                color: #555;
+            }
+            
+    
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="sidebar">
+                <h3>Menu</h3>
+                <a data-bs-target="#carouselMenu" data-bs-slide-to="0"><i class="fas fa-user"></i> About</a>
+                <a data-bs-target="#carouselMenu" data-bs-slide-to="1"><i class="fas fa-briefcase"></i> Portfolio</a>
+                <a data-bs-target="#carouselMenu" data-bs-slide-to="2"><i class="fas fa-file-alt"></i> Resume</a>
+                <a data-bs-target="#carouselMenu" data-bs-slide-to="3"><i class="fas fa-heart"></i> Interests</a>
+                <a data-bs-target="#carouselMenu" data-bs-slide-to="4"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <div class="carousel slide" id="carouselMenu" data-bs-ride="false">
+                <div class="carousel-inner">
+                    <!-- About Me Section -->
+                    <div class="carousel-item active">
+                        <h2 class="section-title">About Me</h2>
+                        <div class="row about-me-content">
+                            <div class="col-md-4">
+                                <img src="https://i.postimg.cc/jq4NYh87/perfil.jpg" alt="Your Photo" class="profile-img">
+                                <div class="profile-details">
+                                    <p><i class="fas fa-birthday-cake"></i> <strong>Age:</strong> 23</p>
+                                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> San José, Costa Rica</p>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="name-container">
+                                    <h3 class="my-name">Angélica María Díaz Barrios</h3>
+                                </div>
+                                <div class="bio-text-container">
+                                    <p class="bio-text">I am a Computer Engineering student with problem-solving and analytical skills. I excel in quick learning, a self-taught approach, and a passion for acquiring new knowledge in emerging technologies. My goal is to contribute creativity and innovation to the development of effective technological solutions.</p>
+                                </div>
+                                <div class="skills">
+                                    <h5><i class="fas fa-cogs"></i> Skills</h5>
+                                    <div class="skills-list">
+                                        <div class="skill-item">
+                                            <i class="fas fa-code"></i>
+                                            <p>Web Development</p>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-laptop-code"></i>
+                                            <p>Software Development</p>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-lightbulb"></i>
+                                            <p>Problem Solving</p>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-users"></i>
+                                            <p>Teamwork</p>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-book"></i>
+                                            <p>Self-Learning</p>
+                                        </div>
+                                        <div class="skill-item">
+                                            <i class="fas fa-sync-alt"></i>
+                                            <p>Adaptability</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Section -->
+                    <div class="carousel-item">
+                        <h2 class="section-title">Portfolio</h2>
+                        <div class="row" style="max-height: 500px;  overflow-y: auto;">
+                            <!-- Card 1: Simplex -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/Rhdn1M3R/simplex.png" class="card-img-top custom-card-img" alt="Simplex">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Simplex</h5>
+                                        <input type="checkbox" id="simplexInfoToggle" class="toggle-description d-none">
+                                        <label for="simplexInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> This project implements the Simplex algorithm to solve linear programming problems, allowing users to input an objective function and constraints. It handles multiple solutions, infeasibility, and unbounded problems.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz and David Centeno</p>
+                                                <label for="simplexInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2: Tokenizer and Parser -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/Qtp7tghv/parse.png" class="card-img-top custom-card-img" alt="Tokenizer and Parser">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Tokenizer and Parser</h5>
+                                        <input type="checkbox" id="parserInfoToggle" class="toggle-description d-none">
+                                        <label for="parserInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> This project involves implementing the early stages of a compiler for the Triangle language in Rust. It includes a tokenizer and syntactic analysis, with a syntax tree visualization.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz, Katerine Guzmán, Rafael Vargas, Joseph David Santamaría, and David Brenes</p>
+                                                <label for="parserInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3: Test Plan -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/SKLQYgYL/test-plan.png" class="card-img-top custom-card-img" alt="Test Plan"
+                                    style="max-height: 800px; object-fit: contain; width: 100%;">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Test Plan</h5>
+                                        <input type="checkbox" id="testPlanInfoToggle" class="toggle-description d-none">
+                                        <label for="testPlanInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> This project involves developing a test plan for a web application managing activities for first-year students at Tecnológico de Costa Rica, focused on static and dynamic testing.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz, David Centeno, Kevin Carranza, Aivy Masis</p>
+                                                <label for="testPlanInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4: Transportation Algorithms -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/MKsQvpJZ/transportation.png" class="card-img-top custom-card-img" alt="Transportation Algorithms">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Transportation Algorithms</h5>
+                                        <input type="checkbox" id="transportationInfoToggle" class="toggle-description d-none">
+                                        <label for="transportationInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> This project applies transportation algorithms to solve transportation problems, including methods like Northwest Corner and MODI, and handles degenerate and unbalanced problems.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz and David Centeno</p>
+                                                <label for="transportationInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 5: Mastermind  -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/mDxMBpfQ/mente-maestra.png" class="card-img-top custom-card-img" alt="Mente Maestra">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Mastermind </h5>
+                                        <input type="checkbox" id="menteMaestraInfoToggle" class="toggle-description d-none">
+                                        <label for="menteMaestraInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> This project implements the classic game of Mastermind in Prolog, where players can either guess or generate a sequence of colors with up to 10 attempts.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz</p>
+                                                <label for="menteMaestraInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 6: Queue Management System -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/447M8mwq/ad-colas.png" class="card-img-top custom-card-img" alt="Queue Management System"
+                                    style="max-height: 800px; object-fit: contain; width: 100%;">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Queue Management System</h5>
+                                        <input type="checkbox" id="colasInfoToggle" class="toggle-description d-none">
+                                        <label for="colasInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> A system designed to manage queues in physical service locations. It prioritizes special customers and provides statistics on waiting times and service areas.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz, David Centeno, Dina Monge</p>
+                                                <label for="colasInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 7: Pyramid Solitaire -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/PJTw8LqJ/solitario.png" class="card-img-top custom-card-img" alt="Pyramid Solitaire" 
+                                        style="max-height: 800px; object-fit: contain; width: 100%;">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Pyramid Solitaire</h5>
+                                        <input type="checkbox" id="solitarioInfoToggle" class="toggle-description d-none">
+                                        <label for="solitarioInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> This project implements a Pyramid Solitaire game in Rust, where players must clear the pyramid using basic card removal rules.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz</p>
+                                                <label for="solitarioInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 8: Word Search -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative custom-card">
+                                    <img src="https://i.postimg.cc/m2Z9LFq6/sopa-de-letras.png" class="card-img-top custom-card-img" alt="Word Search">
+                                    <div class="card-body custom-card-body">
+                                        <h5 class="card-title">Word Search</h5>
+                                        <input type="checkbox" id="sopaInfoToggle" class="toggle-description d-none">
+                                        <label for="sopaInfoToggle" class="btn btn-primary custom-card-button">View Project</label>
+                                        <div class="collapse-content">
+                                            <div class="card card-body mt-3">
+                                                <p><strong>Description:</strong> A word search game developed in Python featuring customizable difficulty levels and word placement.</p>
+                                                <p><strong>Created by:</strong> Angélica Díaz and Hillary Malespín</p>
+                                                <label for="sopaInfoToggle" class="btn btn-secondary">Close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Botón general para GitHub -->
+                            <div class="text-center mt-4">
+                                <a href="https://github.com/AngelicaDiazB14/Projects.git" class="btn btn-dark" target="_blank">
+                                    <i class="fab fa-github"></i> View All Projects on GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Resume Section -->
+                    <div class="carousel-item">
+                        <h2 class="section-title">Resume</h2>
+                        <!-- Education Section -->
+                        <div class="section education">
+                            <h4><i class="fas fa-certificate"></i> Education</h4>
+                            <ul>
+                                <li>
+                                    <div class="cert-item">
+                                        <strong class="institution">Costa Rica Institute of Technology (ITCR)</strong>
+                                        <div class="certificate-details">
+                                            <ul>
+                                                <li><i class="fas fa-clock"></i>    B.S in Computer Engineering <span class="date">(2021-Present)</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="cert-item">
+                                        <strong class="institution">Experimental Bilingual High School of Río Jiménez</strong>
+                                        <div class="certificate-details">
+                                            <ul>
+                                                <li><i class="fas fa-clock"></i>  Bachelor’s Degree  <span class="date">(2016 - 2020)</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    
+                        <hr class="section-divider">
+                        <!-- Certificates Section -->
+                        <div class="section certificates">
+                            <h4><i class="fas fa-certificate"></i> Certificates</h4>
+                            <ul>
+                                <li>
+                                    <div class="cert-item">
+                                        <strong class="institution">Huawei - CRA Training Program</strong>
+                                        <div class="certificate-details">
+                                            <ul>
+                                                <li><i class="fas fa-clock"></i> Cloud Basics: Development and Basic Concepts <span class="date">(1 hour, December 15, 2024)</span></li>
+                                                <li><i class="fas fa-clock"></i> Principles and Applications of Cloud Computing <span class="date">(4 hours, December 16, 2024)</span></li>
+                                                <li><i class="fas fa-clock"></i> Cloud Advanced: Architecture and Technologies <span class="date">(1 hour, December 15, 2024)</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="cert-item">
+                                        <strong class="institution">Experimental Bilingual High School of Río Jiménez</strong>
+                                        <div class="certificate-details">
+                                            <ul>
+                                                <li><i class="fas fa-clock"></i> Certificate of Proficiency in Accounting <span class="date">(320 hours, December 21, 2020)</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr class="section-divider">
+                        <!-- Programming Languages Section -->
+                        <div class="section programming-languages">
+                            <h4><i class="fas fa-laptop-code"></i> Programming Languages</h4>
+                            <div class="progress-container">
+                                <div class="progress-item">
+                                    <div class="progress-bar-title">C</div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 50%;"></div>
+                                    </div>
+                                    <span class="percentage">Basic</span>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-bar-title">Rust</div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 60%;"></div>
+                                    </div>
+                                    <span class="percentage">Intermediate</span>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-bar-title">Python</div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 75%;"></div>
+                                    </div>
+                                    <span class="percentage">Intermediate</span>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-bar-title">Java</div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 50%;"></div>
+                                    </div>
+                                    <span class="percentage">Basic</span>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-bar-title">C++</div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 60%;"></div>
+                                    </div>
+                                    <span class="percentage">Intermediate</span>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-bar-title">Prolog</div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 68%;"></div>
+                                    </div>
+                                    <span class="percentage">Intermediate</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="section-divider">
+                    </div>
+                    <!-- Interests Section -->
+                    <div class="carousel-item">
+                        <h2 class="section-title text-center mb-4">Interests</h2>
+                        <div class="row">
+                            <!-- Interest 1: Traveling -->
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="interest-item">
+                                    <div class="circle">
+                                        <i class="fas fa-plane-departure fa-3x" style="color: #3498db;"></i>
+                                    </div>
+                                    <h5>Traveling</h5>
+                                    <p>I enjoy exploring new places, expanding my global perspective, and discovering diverse cultures and gastronomy.</p>
+                                </div>
+                            </div>
+                            <!-- Interest 2: Cinema -->
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="interest-item">
+                                    <div class="circle">
+                                        <i class="fas fa-film fa-3x" style="color: #e74c3c;"></i>
+                                    </div>
+                                    <h5>Cinema</h5>
+                                    <p>I enjoy films of different categories.</p>
+                                </div>
+                            </div>
+                            <!-- Interest 3: Learning -->
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="interest-item">
+                                    <div class="circle">
+                                        <i class="fas fa-laptop-code fa-3x" style="color: #2ecc71;"></i>
+                                    </div>
+                                    <h5>New Technologies</h5>
+                                    <p>When the opportunity arises, I like to take free courses related to the field of technology to stay updated or learn something new.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contact Section -->
+                    <div class="carousel-item">
+                        <h2 class="section-title"> Contact</h2>
+                        <div class="contact-info">
+                            <ul>
+                                <li class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <a href="mailto:diazbarriosangelica00@gmail.com">Email: diazbarriosangelica00@gmail.com</a>
+                                </li>
+                                <li class="contact-item">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <a href="tel:+50661344593">Phone: +506 6134-4593</a>
+                                </li>
+                                <li class="contact-item">
+                                    <i class="fab fa-github"></i>
+                                    <a href="https://github.com/AngelicaDiazB14" target="_blank">GitHub: AngelicaDiazB14</a>
+                                </li>
+                                <li class="contact-item">
+                                    <i class="fab fa-youtube"></i>
+                                    <a href="https://www.youtube.com/@angelicadiazbarrios3401" target="_blank">YouTube: @angelicadiazbarrios3401</a>
+                                </li>
+                                <li class="contact-item">
+                                    <i class="fab fa-discord"></i>
+                                    <a href="https://discord.com/users/diazb14" target="_blank">Discord: diazb14</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselMenu" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselMenu" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
